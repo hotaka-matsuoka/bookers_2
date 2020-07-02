@@ -1,0 +1,46 @@
+<div class="body">
+  <div class="container">
+    <p id="notice"><%= flash[:notice] %></p>
+    <div class="row">
+      <%= render "left_side" %>
+      <div class="col-xs-9">
+        <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <% unless @book.user.profile_image %>
+                  <%= image_tag 'no_image.jpg', size: '50x50' %>
+                  <% unless current_user == @book.user_id %>
+                    <br> 
+                    <%= link_to "#{@book.user.name}", user_path(@book.user.id) %>
+                  <% end %>
+                <% else %>
+                  <%= attachment_image_tag(@book.user, :profile_image, :fill, 50, 50, format: "jpg")%>
+                  <% unless current_user == @book.user_id %>
+                    <br> 
+                    <%= link_to "#{@book.user.name}", user_path(@book.user.id) %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <%= @book.title %>
+              </td>
+              <td>
+                <%= @book.body %>
+              </td>
+              <% if current_user.id == @book.user_id %>
+                <td>
+                  <%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success" %>
+                </td>
+                <td>
+                  <%= link_to "Destroy", book_path(@book), class: "btn-sm btn-danger", method: :delete, data: {confirm: "削除しますか？"} %>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="col-xs-3">
+  <h2>User info</h2>
+  <% unless @user.profile_image %>
+    <%= image_tag 'no_image.jpg', class: "attachment user profile_image fallback" %>
+  <% else %>
+    <%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: "jpg", class: "attachment user profile_image fallback") %>
+  <% end %>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>name</th>
+        <th><%= @user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <%= link_to edit_user_path(current_user.id) do %>
+      <i class="col-xs-12 btn btn-default glyphicon glyphicon-wrench"></i>
+    <% end %>
+  </div>
+  <h2>New book</h2>
+  <%= form_for(@book, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class="field row">
+      <label for="title">Title</label>
+      <%= f.text_field :title, class: "col-xs-12 book_title" %>
+    </div>
+    <div class="field row">
+      <label for="body">Opinion</label>
+      <%= f.text_area :body, class: "col-xs-12 book_body" %>
+    </div>
+    <div class="actions row">
+      <%= f.submit "Create Book", class: "btn btn-primary col-xs-12" %>
+    </div>
+  <% end %>
+</div>
