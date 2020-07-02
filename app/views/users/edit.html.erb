@@ -1,0 +1,23 @@
+<div class="body">
+  <div class="container">
+    <h2>User info</h2>
+    <%= form_with model: @user, local: true do |f| %>  
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="field">
+        <label for="title">Name</label>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <label for="profile_image">Image</label>
+        <%= f.attachment_field :profile_image %>
+      </div>
+      <div class="field">
+        <label for="introduction">Introduction</label>
+        <%= f.text_area :introduction %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Update User" %>
+      </div>
+    <% end %>
+  </div>
+</div>
