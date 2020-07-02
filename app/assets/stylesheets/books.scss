@@ -1,3 +1,18 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.body {
+  margin-top: 51px;
+}
+
+.container {
+  nav {
+    span {
+      color: #ffffff;
+      font-size: 30px;
+    }
+  }
+}
+#notice {
+  color: rgb(60, 230, 0);
+}
